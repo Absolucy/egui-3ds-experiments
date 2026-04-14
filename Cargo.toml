@@ -1,0 +1,36 @@
+[package]
+name = "egui-3ds-experiments"
+version = "0.1.0"
+edition = "2024"
+authors = ["Lucy <lucy@absolucy.moe>"]
+license = "0BSD"
+repository = "https://github.com/Absolucy/egui-3ds-experiments"
+publish = false
+
+[dependencies]
+anyhow = "1"
+ctru-rs = { git = "https://github.com/rust3ds/ctru-rs" }
+ctru-sys = { git = "https://github.com/rust3ds/ctru-rs" }
+# citro3d = { git = "https://github.com/rust3ds/citro3d-rs" }
+# citro3d-sys = { git = "https://github.com/rust3ds/citro3d-rs" }
+egui = { git = "https://github.com/Absolucy/egui", branch = "portable-atomics", features = ["portable-atomic"] }
+egui_extras = { git = "https://github.com/Absolucy/egui", branch = "portable-atomics", features = ["portable-atomic"] }
+egui_demo_lib = { git = "https://github.com/Absolucy/egui", branch = "portable-atomics" }
+# egui_software_backend = { version = "0.0.3", default-features = false, features = ["std"] }
+egui_software_backend = { git = "https://github.com/Absolucy/egui_software_backend", branch = "ahash-fix", default-features = false, features = ["std"] }
+bytemuck = "1"
+
+[package.metadata.cargo-3ds]
+romfs_dir = "romfs"
+
+[patch.crates-io]
+egui = { git = "https://github.com/Absolucy/egui", branch = "portable-atomics" }
+emath = { git = "https://github.com/Absolucy/egui", branch = "portable-atomics" }
+epaint = { git = "https://github.com/Absolucy/egui", branch = "portable-atomics" }
+egui_extras = { git = "https://github.com/Absolucy/egui", branch = "portable-atomics" }
+
+[profile.release]
+debug = "limited"
+opt-level = 3
+lto = "fat"
+codegen-units = 1

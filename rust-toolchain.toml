@@ -1,0 +1,3 @@
+[toolchain]
+channel = "nightly-2026-03-31" # 2026-04-01 and later are broken currently
+components = ["rust-src"]

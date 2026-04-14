@@ -1,0 +1,20 @@
+{
+	// Use cargo-3ds to drive "check on save". This avoids cache thrashing when alternating
+	// between rust-analyzer and running cargo-3ds from the command line
+	"rust-analyzer.check.overrideCommand": [
+		"cargo",
+		"3ds",
+		// or "clippy" if you want to use clippy
+		"clippy",
+		"--message-format=json-diagnostic-rendered-ansi",
+	],
+	// even with overrideCommand, this is still needed for build scripts to work properly:
+	"rust-analyzer.cargo.target": "armv6k-nintendo-3ds",
+	"rust-analyzer.server.extraEnv": {
+		// Adjust as needed to point to your installation of devkitPro:
+		"DEVKITPRO": "/opt/devkitpro",
+		"DEVKITARM": "/opt/devkitpro/devkitARM",
+		// This should be the same as your usual $PATH, but with devkitPro paths added to the beginning.
+		// Might not be necessary if you already added these to your host $PATH.
+	},
+}
